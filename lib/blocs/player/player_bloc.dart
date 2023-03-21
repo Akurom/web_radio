@@ -24,9 +24,9 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
   void _setRadioEvent(SetRadioEvent event, Emitter<PlayerState> emit) async {
     radio = event.radio;
+    log(radio.name);
     //final String code = "data:audio/wav;base64,${json.decode(radio.url)["base64"]";
     await audioPlayer.setUrl(radio.url);
-    log(radio.name);
   }
 
   void _playEvent(PlayEvent event, Emitter<PlayerState> emit) async {
