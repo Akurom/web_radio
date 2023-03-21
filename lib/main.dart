@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'repositories/repositories.dart';
 
 void main() {
+
+  // ------ TESTS
+  RadioRepository().getRadiosByCountryCode('jp');
+
+
+  //-----------------
+
+
   runApp(const MyApp());
 }
 
