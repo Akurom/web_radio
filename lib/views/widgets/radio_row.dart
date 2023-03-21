@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:web_radio/blocs/player/player_bloc.dart';
 import 'package:web_radio/consts/size_constants.dart';
 import 'package:web_radio/models/radio_model.dart';
 import 'package:web_radio/utils/utils.dart';
@@ -12,7 +13,8 @@ class RadioRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      child: Container(
       height: screenHeight(context) * SizeConstants.radioRowRatio,
       decoration: BoxDecoration(
           // todo set color if playing (PlayerBloc)
@@ -48,6 +50,11 @@ class RadioRow extends StatelessWidget {
           Icon(Icons.star_border_sharp),
         ],
       ),
+    ),
+      onTap: () {
+        // todo set radio to Player
+        PlayerBloc().add(SetRadioEvent(radio: radio));
+      },
     );
   }
 }

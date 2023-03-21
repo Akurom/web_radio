@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:web_radio/blocs/player/player_bloc.dart';
 import 'package:web_radio/blocs/radios/radios_bloc.dart';
 import 'package:web_radio/views/pages/home_page.dart';
 import 'repositories/repositories.dart';
@@ -16,11 +17,18 @@ void main() {
   final RadiosRepository radiosRepository = RadiosRepository();
 
   runApp(
-    BlocProvider(
-      create: (context) => RadiosBloc(
-        radiosRepository: radiosRepository,
-        countryCode: 'jp',
-      )..add(GetRadios()),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<RadiosBloc>(
+          create: (BuildContext context) => RadiosBloc(
+            radiosRepository: radiosRepository,
+            countryCode: 'jp',
+          )..add(GetRadios()),
+        ),
+        BlocProvider<PlayerBloc>(
+          create: (BuildContext context) => PlayerBloc(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
@@ -35,9 +43,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
 
-        // TODO
+          // TODO
 
-      ),
+          ),
       home: const HomePage(),
     );
   }

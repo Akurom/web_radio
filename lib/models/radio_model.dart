@@ -8,6 +8,32 @@ class RadioModel {
   final String country;
   final String codec;
   final int bitrate;
+  final int clicktrend;
+  final int clickcount;
+
+  const RadioModel({
+    required this.stationuuid,
+    required this.name,
+    required this.faviconUrl,
+    required this.url,
+    required this.country,
+    required this.codec,
+    required this.bitrate,
+    required this.clicktrend,
+    required this.clickcount,
+  });
+
+  static const empty = RadioModel(
+    stationuuid: '',
+    name: '',
+    faviconUrl: '',
+    url: '',
+    country: '',
+    codec: '',
+    bitrate: 0,
+    clicktrend: 0,
+    clickcount: 0,
+  );
 
   RadioModel.fromJson(Map<String, dynamic> json)
       : stationuuid = json['stationuuid'],
@@ -16,7 +42,9 @@ class RadioModel {
         url = json['url'],
         country = json['country'],
         codec = json['codec'],
-        bitrate = json['bitrate'];
+        bitrate = json['bitrate'],
+        clicktrend = json['clicktrend'],
+        clickcount = json['clickcount'];
 
   Map<String, dynamic> toJson() => {
     'stationuuid': stationuuid,
@@ -26,5 +54,7 @@ class RadioModel {
     'country': country,
     'codec': codec,
     'bitrate': bitrate,
+    'clicktrend': clicktrend,
+    'clickcount': clickcount,
   };
 }

@@ -30,7 +30,7 @@ class RadiosRepository {
 
     if (response.statusCode == 200) {
       final List result = response.data;
-      return result.map((e) => RadioModel.fromJson(e)).toList();
+      return result.map((e) => RadioModel.fromJson(e)).toList()..sort((e1, e2) => e2.clicktrend.compareTo(e1.clicktrend));
     } else {
       throw RadiosFailure(error: response.statusMessage!);
     }
