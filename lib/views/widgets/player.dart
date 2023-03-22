@@ -1,57 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:web_radio/blocs/player/player_bloc.dart';
 import 'package:web_radio/consts/color_constants.dart';
 import 'package:web_radio/consts/size_constants.dart';
 import 'package:web_radio/utils/utils.dart';
+import 'package:web_radio/views/widgets/player/play_pause_button.dart';
 
 class Player extends StatelessWidget {
   Player({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(top: BorderSide()),
-        //color: ColorConstants.playerColor,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // ------ Details
-          Flexible(flex: 1, child: Align(alignment: Alignment.centerLeft, child: Text("Radio name --debug"))),
-          // ------ Controls
-          Flexible(
-            flex: 3,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                InkWell(
-                  child: Icon(
-                    Icons.play_arrow_sharp,
-                    size: screenHeight(context) * SizeConstants.playerIconRatio,
-                  ),
-                  onTap: () {
-                    BlocProvider.of<PlayerBloc>(context).add(PlayEvent());
-                  },
-                ),
-                InkWell(
-                  child: Icon(
-                    Icons.stop_sharp,
-                    size: screenHeight(context) * SizeConstants.playerIconRatio,
-                  ),
-                  onTap: () {
-                    BlocProvider.of<PlayerBloc>(context).add(StopEvent());
-                  },
-                ),
-              ],
-            ),
+        return Container(
+          decoration: BoxDecoration(
+            color: ColorConstants.accentColor,
+            border: Border(
+              top: BorderSide(
+                width: screenHeight(context) * SizeConstants.borderRatio,
+            )),
           ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // ------ Details
+              /*Flexible(
+                  flex: 1,
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        state.status.isPlaying ? state.radio.name : '--',
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ))),*/
+              Padding(padding: EdgeInsets.all(screenHeight(context) * SizeConstants.defaultPaddingRatio),),
+              // ------ Controls
+              Flexible(
+                flex: 3,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    PlayPauseButton(),
+                  ],
+                ),
+              ),
 
-          // ------- Volume
-        ],
-      ),
-    );
+              Padding(padding: EdgeInsets.all(screenHeight(context) * SizeConstants.defaultPaddingRatio),),
+
+              // ------- Volume
+            ],
+          ),
+        );
+
   }
 }
