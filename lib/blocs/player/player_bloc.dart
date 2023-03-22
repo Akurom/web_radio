@@ -16,20 +16,28 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   final AudioPlayer audioPlayer = AudioPlayer();
 
   PlayerBloc() : super(const PlayerState()) {
-    on<SetRadioEvent>(_setRadioEvent);
+    on<SetRadioAndPlayEvent>(_setRadioAndPlayEvent);
     on<PlayEvent>(_playEvent);
     on<PauseEvent>(_pauseEvent);
     on<StopEvent>(_stopEvent);
   }
 
-  void _setRadioEvent(SetRadioEvent event, Emitter<PlayerState> emit) async {
+  void _setRadioAndPlayEvent(SetRadioAndPlayEvent event, Emitter<PlayerState> emit) async {
     radio = event.radio;
     log(radio.name);
-    //final String code = "data:audio/wav;base64,${json.decode(radio.url)["base64"]";
+    add(StopEvent());
     await audioPlayer.setUrl(radio.url);
+    add(PlayEvent());
+    emit(
+      state.copyWith(
+        radio: radio,
+        status: PlayerStatus.playing,
+      ),
+    );
   }
 
   void _playEvent(PlayEvent event, Emitter<PlayerState> emit) async {
+
     audioPlayer.play();
     emit(
       state.copyWith(
@@ -40,6 +48,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   }
 
   void _pauseEvent(PauseEvent event, Emitter<PlayerState> emit) async {
+    log('PauseEvent');
     audioPlayer.pause();
     emit(
       state.copyWith(
@@ -50,8 +59,9 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   }
 
   void _stopEvent(StopEvent event, Emitter<PlayerState> emit) async {
+    log('StopEvent');
     audioPlayer.pause();
-    radio = RadioModel.empty;
+    //radio = RadioModel.empty;
     emit(
       state.copyWith(
         radio: radio,

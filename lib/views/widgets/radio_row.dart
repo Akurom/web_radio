@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_radio/blocs/player/player_bloc.dart';
 import 'package:web_radio/consts/size_constants.dart';
 import 'package:web_radio/models/radio_model.dart';
@@ -51,9 +52,8 @@ class RadioRow extends StatelessWidget {
         ],
       ),
     ),
-      onTap: () {
-        // todo set radio to Player
-        PlayerBloc().add(SetRadioEvent(radio: radio));
+      onTap: () async {
+        BlocProvider.of<PlayerBloc>(context).add(SetRadioAndPlayEvent(radio: radio));
       },
     );
   }

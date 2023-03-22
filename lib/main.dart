@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:web_radio/blocs/player/player_bloc.dart';
 import 'package:web_radio/blocs/radios/radios_bloc.dart';
 import 'package:web_radio/views/pages/home_page.dart';
 import 'repositories/repositories.dart';
 
-void main() {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
 
   final RadiosRepository radiosRepository = RadiosRepository();
 

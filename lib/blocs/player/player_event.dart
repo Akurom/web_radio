@@ -5,9 +5,9 @@ abstract class PlayerEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class SetRadioEvent extends PlayerEvent {
+class SetRadioAndPlayEvent extends PlayerEvent {
   RadioModel radio;
-  SetRadioEvent({required this.radio});
+  SetRadioAndPlayEvent({required this.radio});
 }
 class PlayEvent extends PlayerEvent {}
 class PauseEvent extends PlayerEvent {}
