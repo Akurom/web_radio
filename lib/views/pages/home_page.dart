@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Column(
+      body: /*SafeArea(child: */Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: [
@@ -27,6 +27,6 @@ class HomePage extends StatelessWidget {
 
         ],
       ),
-    ),);
+   /* ),*/);
   }
 }
