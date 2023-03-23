@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:web_radio/consts/size_constants.dart';
 import 'package:web_radio/utils/utils.dart';
+import 'package:web_radio/views/widgets/custom_app_bar.dart';
 import 'package:web_radio/views/widgets/player.dart';
 
 import 'package:web_radio/views/widgets/radios_list.dart';
@@ -17,7 +18,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: [
-          // todo app bar
+          CustomAppBar(),
           RadiosList(),
           SizedBox(
             height: screenHeight(context) * SizeConstants.playerRatio,

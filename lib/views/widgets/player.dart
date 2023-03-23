@@ -13,11 +13,11 @@ class Player extends StatelessWidget {
   Widget build(BuildContext context) {
         return Container(
           decoration: BoxDecoration(
-            color: ColorConstants.accentColor,
-            border: Border(
+            color: Theme.of(context).primaryColor,
+            /*border: Border(
               top: BorderSide(
                 width: screenHeight(context) * SizeConstants.borderRatio,
-            )),
+            )),*/
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

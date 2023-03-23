@@ -42,8 +42,9 @@ class _PlayPauseButtonState extends State<PlayPauseButton> with SingleTickerProv
           decoration: BoxDecoration(
               color: ColorConstants.backGroundColor,
               shape: BoxShape.circle,
-              border: Border.all(
-                  width: screenHeight(context) * SizeConstants.borderRatio, color: ColorConstants.primaryColor)),
+              /*border: Border.all(
+                  width: screenHeight(context) * SizeConstants.borderRatio, color: ColorConstants.primaryColor),*/
+          ),
           child: InkWell(
             customBorder: CircleBorder(
                 side: BorderSide(
