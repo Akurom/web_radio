@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:dio/dio.dart';
+import 'package:web_radio/consts/time_constants.dart';
 
 import 'package:web_radio/models/radio_model.dart';
 
@@ -44,6 +45,7 @@ class RadiosRepository {
       final response = await dio.get(
         'http://${servers[i]}/json/stations/bycountrycodeexact/$countryCode?hidebroken=true',
         options: Options(
+          receiveTimeout: TimeConstants.fetchRadiosTimeout,
           headers: {
             'User-Agent': 'flutter_web_radio/0.1',
             'Content-type': 'application/json',

@@ -9,12 +9,13 @@ import 'package:web_radio/blocs/player/player_bloc.dart';
 import 'package:web_radio/blocs/radios/radios_bloc.dart';
 import 'package:web_radio/consts/color_constants.dart';
 import 'package:web_radio/theme/cubit/theme_cubit.dart';
+import 'package:web_radio/theme/theme.dart';
 import 'package:web_radio/views/pages/home_page.dart';
 import 'repositories/repositories.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [/*SystemUiOverlay.top*/]);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -22,11 +23,13 @@ void main() async {
 
   final RadiosRepository radiosRepository = RadiosRepository();
 
+  final ThemeData theme = await loadThemeFromPreference();
+
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider<ThemeCubit>(
-          create: (_) => ThemeCubit(),
+          create: (_) => ThemeCubit(defaultTheme: theme),
         ),
         BlocProvider<RadiosBloc>(
           create: (_) => RadiosBloc(

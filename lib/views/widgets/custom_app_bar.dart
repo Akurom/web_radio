@@ -26,8 +26,7 @@ class CustomAppBar extends StatelessWidget {
               icon: const Icon(Icons.settings),
               tooltip: 'Setting Icon',
               onPressed: () {
-                Navigator.push(
-                  context,
+                Navigator.of(context, rootNavigator: true,).push(
                   MaterialPageRoute(builder: (context) => ThemePage()),
                 );
               },
