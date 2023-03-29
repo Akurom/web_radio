@@ -36,6 +36,9 @@ Future<ThemeData> loadThemeFromPreference() async {
   MaterialColor? prefsColor = colorValueToMaterialColor(themeColorValue);
 
   return ThemeData(
+    colorScheme: ColorScheme.fromSwatch(
+      accentColor: prefsColor ?? ColorConstants.defaultColor,
+    ),
     primarySwatch: prefsColor ?? ColorConstants.defaultColor,
     appBarTheme: AppBarTheme(color: prefsColor ?? ColorConstants.defaultColor),
     brightness: Brightness.light,
