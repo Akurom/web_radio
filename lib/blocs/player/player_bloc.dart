@@ -65,7 +65,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     emit(
       state.copyWith(
         radio: radio,
-        status: PlayerStatus.initial,
+        status: PlayerStatus.paused,  //initial
       ),
     );
   }

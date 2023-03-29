@@ -15,10 +15,11 @@ class PlayPauseButton extends StatefulWidget {
 class _PlayPauseButtonState extends State<PlayPauseButton> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-  late bool _isPlaying = false;
+  bool _isPlaying = false;
 
   @override
   void initState() {
+    print("init");
     _controller = AnimationController(vsync: this, duration: TimeConstants.animatedIconDuration);
     _animation = CurvedAnimation(curve: Curves.easeInOutCirc, parent: _controller);
     super.initState();
@@ -28,12 +29,13 @@ class _PlayPauseButtonState extends State<PlayPauseButton> with SingleTickerProv
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerBloc, PlayerState>(
       builder: (context, state) {
+
         if (state.status.isPlaying && _isPlaying == false) {
+          _isPlaying = true;
           _controller.forward();
-          _isPlaying == true;
         } else if (state.status.isPaused && _isPlaying == true) {
+          _isPlaying = false;
           _controller.reverse();
-          _isPlaying == false;
         }
 
         return Container(
